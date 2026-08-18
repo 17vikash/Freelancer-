@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Posted Jobs — Freelancer Marketplace</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3.3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="main-navbar"></div>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="dashboard-sidebar">
+      <div class="px-3 py-2 mb-3 border-bottom border-light">
+        <span class="mono-font fs-8 text-muted text-uppercase fw-bold">Client Workspace</span>
+        <h6 id="sidebar-client-name" class="fw-bold mb-0">Apex Financial Labs</h6>
+      </div>
+
+      <nav class="nav flex-column">
+        <a class="dashboard-nav-item" href="client-dashboard.html"><i class="fas fa-home"></i> Overview</a>
+        <a class="dashboard-nav-item active" href="client-jobs.html"><i class="fas fa-briefcase"></i> My Jobs</a>
+        <a class="dashboard-nav-item" href="post-job.html"><i class="fas fa-plus-circle text-primary"></i> Post New Job</a>
+        <a class="dashboard-nav-item" href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-content">
+      <div class="container-fluid">
+        
+        <!-- Header Title -->
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <div>
+            <h1 class="fw-bold h3 mb-1">My Posted Jobs</h1>
+            <p class="text-muted mb-0">Manage your active job listings, review applicant proposals, and track progress.</p>
+          </div>
+          <a href="post-job.html" class="gg-btn-primary"><i class="fas fa-plus me-1"></i> Post a Job</a>
+        </div>
+
+        <!-- Filter & Search Bar -->
+        <div class="gg-card p-3 mb-4 shadow-sm">
+          <div class="row g-3 align-items-center">
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text bg-transparent border-end-0"><i class="fas fa-search text-muted"></i></span>
+                <input type="text" id="my-jobs-search" class="form-control border-start-0 ps-0" placeholder="Filter by job title or category...">
+              </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-md-end gap-2">
+              <div class="btn-group" role="group" aria-label="Status filter">
+                <button type="button" class="btn btn-outline-secondary btn-sm active status-filter-btn" onclick="filterMyJobs('all')">All</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm status-filter-btn" onclick="filterMyJobs('open')">Open</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm status-filter-btn" onclick="filterMyJobs('in_progress')">In Progress</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm status-filter-btn" onclick="filterMyJobs('completed')">Completed</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jobs Table Container -->
+        <div class="gg-card p-4 shadow-sm">
+          <!-- Loading Skeleton -->
+          <div id="my-jobs-skeleton" class="py-3">
+            <div class="skeleton skeleton-text mb-3" style="height: 50px;"></div>
+            <div class="skeleton skeleton-text mb-3" style="height: 50px;"></div>
+            <div class="skeleton skeleton-text" style="height: 50px;"></div>
+          </div>
+
+          <!-- Table Wrapper -->
+          <div id="my-jobs-table-wrapper" class="table-responsive d-none">
+            <table class="table align-middle table-hover mb-0">
+              <thead class="table-light fs-8 text-uppercase">
+                <tr>
+                  <th scope="col">Job Title</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Budget</th>
+                  <th scope="col">Deadline</th>
+                  <th scope="col">Proposals</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="my-jobs-tbody" class="fs-7">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State -->
+          <div id="my-jobs-empty" class="empty-state d-none py-5">
+            <i class="fas fa-folder-open fs-1 text-muted mb-3"></i>
+            <h4 class="fw-bold mb-2">No Posted Jobs Found</h4>
+            <p class="text-muted fs-7 mb-3">You haven't posted any jobs under this status yet.</p>
+            <a href="post-job.html" class="gg-btn-primary">Post a New Job Now</a>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/client-jobs.js"></script>
+</body>
+</html>

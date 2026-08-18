@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Sign In — Freelancer Marketplace</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3.3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+  <div id="main-navbar"></div>
+
+  <main class="flex-grow-1 enterprise-auth-wrapper">
+    <div class="container-fluid p-0">
+      <div class="row g-0 h-100">
+        
+        <!-- Left Side: Enterprise Showcase Hero Banner (Desktop) -->
+        <div class="col-lg-6 enterprise-hero-side">
+          <div>
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-10 border border-white border-opacity-20 mb-4">
+              <span class="pulse-dot"></span>
+              <span class="mono-font fs-8 text-white fw-bold">SOC2 TYPE II • SAML 2.0 / OKTA READY</span>
+            </div>
+
+            <h1 class="display-4 fw-bold mb-3">Enterprise Talent & Project Engine</h1>
+            <p class="lead text-white-50 mb-5" style="max-width: 480px;">
+              Scale your engineering and creative teams with vetted top 1% freelancers worldwide. Secure, compliant, and lightning fast.
+            </p>
+
+            <!-- Testimonial Glass Card -->
+            <div class="enterprise-testimonial-card mb-4">
+              <p class="fs-7 text-white mb-3">
+                "Freelancer Marketplace enabled us to assemble a senior React & AI engineering squad in under 48 hours. The speed and work quality exceeded all expectations."
+              </p>
+              <div class="d-flex align-items-center gap-3">
+                <div class="avatar-circle bg-white text-dark fw-bold">AF</div>
+                <div>
+                  <div class="fw-bold fs-7 text-white">David Miller</div>
+                  <div class="fs-8 text-white-50">VP of Engineering, Apex Financial Labs</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center gap-4 text-white-50 fs-8 border-top border-white border-opacity-10 pt-3">
+            <span><i class="fas fa-lock text-accent me-1"></i> 256-Bit SSL Encrypted</span>
+            <span>•</span>
+            <span><i class="fas fa-shield-alt text-success me-1"></i> ISO 27001 Certified</span>
+          </div>
+        </div>
+
+        <!-- Right Side: Enterprise Login Form -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-center p-4 p-md-5">
+          <div style="width: 100%; max-width: 420px;">
+            
+            <div class="text-center text-lg-start mb-4">
+              <a class="navbar-brand navbar-brand-logo mb-2 d-inline-block" href="index.html">
+                <i class="fas fa-bolt text-primary"></i> Freelancer Marketplace
+              </a>
+              <h2 class="fw-bold h3 mb-1">Sign in to your Workspace</h2>
+              <p class="text-muted fs-7">Enter your credentials or corporate single sign-on</p>
+            </div>
+
+            <!-- SSO Buttons -->
+            <div class="d-flex flex-column gap-2 mb-3">
+              <button type="button" class="btn-sso" onclick="triggerGoogleAuth('client')">
+                <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 6.01-1.08 8.01-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.13 1.16-3.18 0-5.88-2.15-6.84-5.04H1.14v3.15C3.15 21.3 7.28 24 12 24z"/><path fill="#FBBC05" d="M5.16 14.16c-.24-.72-.38-1.49-.38-2.16s.14-1.44.38-2.16V6.69H1.14C.41 8.14 0 9.99 0 12s.41 3.86 1.14 5.31l4.02-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C18.01 1.19 15.24 0 12 0 7.28 0 3.15 2.7 1.14 6.69l4.02 3.15c.96-2.89 3.66-5.09 6.84-5.09z"/></svg>
+                Continue with Google
+              </button>
+            </div>
+
+            <div class="auth-divider">
+              <span>OR SIGN IN WITH EMAIL</span>
+            </div>
+
+            <!-- Inline Error Banner -->
+            <div id="login-error-banner" class="alert alert-danger d-none py-2 px-3 fs-7 mb-3" role="alert">
+              <i class="fas fa-exclamation-circle me-1"></i> <span id="login-error-text">Invalid credentials</span>
+            </div>
+
+            <!-- Form -->
+            <form id="login-form" novalidate>
+              <div class="mb-3">
+                <label for="email" class="form-label">Work Email</label>
+                <input type="email" id="email" class="form-control" placeholder="name@company.com" required>
+                <div class="invalid-feedback fs-8">Please enter a valid work email address.</div>
+              </div>
+
+              <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <label for="password" class="form-label mb-0">Password</label>
+                  <a href="#" class="fs-8 text-primary fw-semibold" onclick="showToast('Password reset instructions sent.', 'info'); return false;">Forgot password?</a>
+                </div>
+                <div class="password-input-group">
+                  <input type="password" id="password" class="form-control pe-5" placeholder="••••••••" required>
+                  <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('password', this)" title="Toggle password view">
+                    <i class="far fa-eye"></i>
+                  </button>
+                </div>
+                <div class="invalid-feedback fs-8">Password is required.</div>
+              </div>
+
+              <div class="mb-4 form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label fs-7 text-muted" for="rememberMe">Keep me signed in on this browser</label>
+              </div>
+
+              <button type="submit" id="login-btn" class="gg-btn-primary w-100 py-2 fs-6">
+                <span>Sign in to Workspace</span> <i class="fas fa-arrow-right ms-1"></i>
+              </button>
+            </form>
+
+            <div class="text-center mt-4 pt-3 border-top border-light fs-7 text-muted">
+              Don't have an account? <a href="signup.html" class="fw-semibold text-primary">Create an Account</a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

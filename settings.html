@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Settings — Freelancer Marketplace</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3.3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="main-navbar"></div>
+
+  <!-- Header Banner -->
+  <section class="bg-white border-bottom border-light py-4">
+    <div class="container">
+      <h1 class="fw-bold h2 mb-1">Account & Preferences</h1>
+      <p class="text-muted mb-0">Manage profile details, security, and notification settings.</p>
+    </div>
+  </section>
+
+  <!-- Main Settings Content -->
+  <main class="py-5">
+    <div class="container" style="max-width: 800px;">
+      
+      <!-- Profile Information Form -->
+      <div class="gg-card p-4 mb-4 shadow-sm">
+        <h4 class="fw-bold mb-4"><i class="fas fa-user-edit text-primary me-2"></i>Profile Information</h4>
+
+        <form id="profile-info-form" novalidate>
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label for="settingsName" class="form-label">Full Name</label>
+              <input type="text" id="settingsName" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label for="settingsEmail" class="form-label">Email Address</label>
+              <input type="email" id="settingsEmail" class="form-control" required readonly>
+              <div class="form-text fs-8">Email address cannot be changed directly.</div>
+            </div>
+          </div>
+
+          <!-- Conditionally Rendered Freelancer Specific Fields -->
+          <div id="settings-freelancer-fields" class="d-none">
+            <div class="mb-3">
+              <label for="settingsTitle" class="form-label">Professional Title</label>
+              <input type="text" id="settingsTitle" class="form-control" placeholder="e.g. Senior Full-Stack Engineer">
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label for="settingsRate" class="form-label">Hourly Rate (₹)</label>
+                <div class="input-group">
+                  <span class="input-group-text mono-font">₹</span>
+                  <input type="number" id="settingsRate" class="form-control mono-font" placeholder="1500">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="settingsSkills" class="form-label">Skills (Comma separated)</label>
+                <input type="text" id="settingsSkills" class="form-control" placeholder="React, Node.js, Python">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="settingsBio" class="form-label">Bio & Overview</label>
+              <textarea id="settingsBio" class="form-control" rows="4" placeholder="Brief overview of your expertise..."></textarea>
+            </div>
+          </div>
+
+          <button type="submit" id="save-profile-btn" class="gg-btn-primary">
+            Save Profile Info
+          </button>
+        </form>
+      </div>
+
+      <!-- Password Change Section -->
+      <div class="gg-card p-4 mb-4 shadow-sm">
+        <h4 class="fw-bold mb-4"><i class="fas fa-key text-primary me-2"></i>Security & Password</h4>
+
+        <form id="password-change-form" novalidate>
+          <div class="mb-3">
+            <label for="currentPassword" class="form-label">Current Password</label>
+            <input type="password" id="currentPassword" class="form-control" required placeholder="••••••••">
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label for="newPassword" class="form-label">New Password</label>
+              <input type="password" id="newPassword" class="form-control" required minlength="8" placeholder="Minimum 8 chars">
+            </div>
+            <div class="col-md-6">
+              <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+              <input type="password" id="confirmNewPassword" class="form-control" required placeholder="••••••••">
+            </div>
+          </div>
+
+          <button type="submit" id="change-pwd-btn" class="gg-btn-outline">
+            Update Password
+          </button>
+        </form>
+      </div>
+
+      <!-- Notification Preferences -->
+      <div class="gg-card p-4 shadow-sm">
+        <h4 class="fw-bold mb-4"><i class="fas fa-bell text-primary me-2"></i>Notification Preferences</h4>
+
+        <div class="form-check form-switch mb-3">
+          <input class="form-check-input" type="checkbox" id="notifyProposals" checked>
+          <label class="form-check-label fw-semibold fs-7" for="notifyProposals">
+            Email alerts on new proposals and bid updates
+          </label>
+        </div>
+
+        <div class="form-check form-switch mb-3">
+          <input class="form-check-input" type="checkbox" id="notifyMessages" checked>
+          <label class="form-check-label fw-semibold fs-7" for="notifyMessages">
+            Direct chat notifications from active clients/freelancers
+          </label>
+        </div>
+
+        <div class="form-check form-switch mb-4">
+          <input class="form-check-input" type="checkbox" id="notifyMarketing">
+          <label class="form-check-label fw-semibold fs-7" for="notifyMarketing">
+            Receive monthly newsletter and industry market insights
+          </label>
+        </div>
+
+        <button type="button" class="gg-btn-secondary" onclick="showToast('Notification preferences saved.', 'success')">
+          Save Preferences
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

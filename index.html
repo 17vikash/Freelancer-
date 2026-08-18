@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelancer Marketplace — Live Platform</title>
+  <meta name="description" content="Connect with top technical freelancers and hire vetted experts with live bidding and instant matching.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3.3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Design System Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Preloader Overlay -->
+  <div id="preloader" class="preloader-overlay">
+    <div class="preloader-spinner"></div>
+    <div class="display-font fw-bold fs-4">Freelancer Marketplace</div>
+    <div class="text-muted fs-7 mt-1 mono-font">Loading live marketplace stream...</div>
+  </div>
+
+  <!-- Dynamic Header Navbar -->
+  <div id="main-navbar"></div>
+
+  <!-- Live Ticker Strip -->
+  <div class="ticker-strip-wrapper">
+    <div id="live-ticker-container" class="ticker-strip">
+      <div class="ticker-item"><span class="pulse-dot"></span> <span class="mono-font fw-bold text-primary">LIVE MARKETPLACE STREAM</span> • Platform initialized • Be the first to post a job or join as freelancer</div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="py-5 my-3">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white border border-primary mb-3 shadow-sm">
+            <span class="pulse-dot"></span>
+            <span class="mono-font fs-7 text-primary fw-bold" id="hero-talent-badge">0 Verified Talent Available Now</span>
+          </div>
+          <h1 class="display-3 fw-bold mb-4" style="letter-spacing: -1px;">
+            Hire Top Talent & Ship Projects <span class="text-primary">at Speed.</span>
+          </h1>
+          <p class="lead text-muted mb-4" style="max-width: 580px;">
+            Connecting ambitious companies with elite full-stack developers, UI/UX designers, and AI specialists. Transparent bidding, verified portfolios, and instant collaboration.
+          </p>
+
+          <div class="d-flex flex-wrap align-items-center gap-3 mb-5">
+            <a href="jobs.html" class="gg-btn-primary gg-btn-lg">
+              Explore Open Gigs <i class="fas fa-arrow-right ms-1"></i>
+            </a>
+            <a href="signup.html?role=client" class="gg-btn-outline gg-btn-lg">
+              Post a Job Free
+            </a>
+          </div>
+
+          <div class="row g-4 pt-3 border-top border-2 border-light">
+            <div class="col-4">
+              <div class="stat-number fs-3 fw-bold text-dark" id="hero-stat-spent">₹0</div>
+              <div class="text-muted fs-7 fw-500">Paid to Freelancers</div>
+            </div>
+            <div class="col-4">
+              <div class="stat-number fs-3 fw-bold text-primary" id="hero-stat-rate">100%</div>
+              <div class="text-muted fs-7 fw-500">Job Completion</div>
+            </div>
+            <div class="col-4">
+              <div class="stat-number fs-3 fw-bold text-dark" id="hero-stat-time">Instant</div>
+              <div class="text-muted fs-7 fw-500">Avg. First Bid</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Preview Card (Dynamic) -->
+        <div class="col-lg-5">
+          <div id="hero-preview-card" class="gg-card gg-card-lg shadow-lg position-relative border-0" style="background: linear-gradient(145deg, #FFFFFF 0%, #ECEBFB 100%);">
+            <div class="text-center py-4">
+              <div class="avatar-circle mx-auto bg-primary-tint text-primary fs-3 fw-bold mb-3" style="width: 64px; height: 64px;"><i class="fas fa-plus"></i></div>
+              <h4 class="fw-bold mb-2">No Gigs Posted Yet</h4>
+              <p class="text-muted fs-7 mb-4">Be the first client to publish a project on the marketplace!</p>
+              <a href="signup.html?role=client" class="gg-btn-primary w-100">Post First Job</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works — Dual Path Section -->
+  <section class="py-5 bg-white border-top border-bottom border-light">
+    <div class="container">
+      <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+        <h2 class="display-6 fw-bold mb-3">Engineered for Both Sides</h2>
+        <p class="text-muted">Whether you're hiring top talent or taking your freelancing career to new heights, Freelancer Marketplace gives you the tools to succeed.</p>
+        
+        <!-- Tab Selector Pills -->
+        <div class="d-inline-flex bg-light p-1 rounded-pill border border-light mt-2" role="tablist">
+          <button class="btn rounded-pill px-4 py-2 fw-semibold active" id="tab-client-btn" onclick="switchPath('client')">
+            <i class="fas fa-building me-2"></i>I Want to Hire (Clients)
+          </button>
+          <button class="btn rounded-pill px-4 py-2 fw-semibold text-muted" id="tab-freelancer-btn" onclick="switchPath('freelancer')">
+            <i class="fas fa-laptop-code me-2"></i>I Want to Work (Freelancers)
+          </button>
+        </div>
+      </div>
+
+      <!-- Client Path Steps -->
+      <div id="path-client" class="row g-4">
+        <div class="col-md-4">
+          <div class="gg-card h-100 p-4">
+            <div class="avatar-circle bg-primary-tint text-primary fs-4 fw-bold mb-3" style="width: 48px; height: 48px;">1</div>
+            <h4 class="fw-bold mb-2">Post a Job in Minutes</h4>
+            <p class="text-muted fs-7">Define scope, required skills, and fixed or hourly budget. Your listing goes live instantly to thousands of verified pros.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gg-card h-100 p-4">
+            <div class="avatar-circle bg-primary-tint text-primary fs-4 fw-bold mb-3" style="width: 48px; height: 48px;">2</div>
+            <h4 class="fw-bold mb-2">Receive Live Bids</h4>
+            <p class="text-muted fs-7">Compare cover letters, hourly rates, and portfolio work. Review real client reviews before accepting a proposal.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gg-card h-100 p-4">
+            <div class="avatar-circle bg-primary-tint text-primary fs-4 fw-bold mb-3" style="width: 48px; height: 48px;">3</div>
+            <h4 class="fw-bold mb-2">Collaborate & Pay Safely</h4>
+            <p class="text-muted fs-7">Manage ongoing projects, track progress milestones, and approve payouts only when work meets your standards.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Freelancer Path Steps (Hidden by default) -->
+      <div id="path-freelancer" class="row g-4 d-none">
+        <div class="col-md-4">
+          <div class="gg-card h-100 p-4">
+            <div class="avatar-circle bg-primary-tint text-primary fs-4 fw-bold mb-3" style="width: 48px; height: 48px;">1</div>
+            <h4 class="fw-bold mb-2">Build Your Pro Profile</h4>
+            <p class="text-muted fs-7">Showcase your top skills, set your hourly rate in ₹, and display your best portfolio projects to stand out.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gg-card h-100 p-4">
+            <div class="avatar-circle bg-primary-tint text-primary fs-4 fw-bold mb-3" style="width: 48px; height: 48px;">2</div>
+            <h4 class="fw-bold mb-2">Bid on Vetted Gigs</h4>
+            <p class="text-muted fs-7">Filter through hundreds of high-budget tech, design, and AI jobs. Pitch your proposal directly to decision makers.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gg-card h-100 p-4">
+            <div class="avatar-circle bg-primary-tint text-primary fs-4 fw-bold mb-3" style="width: 48px; height: 48px;">3</div>
+            <h4 class="fw-bold mb-2">Earn & Grow Reputation</h4>
+            <p class="text-muted fs-7">Deliver exceptional results, receive 5-star ratings, and get paid promptly with transparent platform fees.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Grid -->
+  <section class="py-5">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <div>
+          <h2 class="display-6 fw-bold mb-1">Popular Categories</h2>
+          <p class="text-muted mb-0">Explore specialized domains with active job postings.</p>
+        </div>
+        <a href="jobs.html" class="gg-btn-outline">View All Jobs <i class="fas fa-arrow-right ms-1"></i></a>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-3 col-6">
+          <a href="jobs.html?category=Web+Development" class="text-decoration-none">
+            <div class="gg-card gg-card-interactive text-center p-4">
+              <i class="fas fa-code text-primary fs-1 mb-3"></i>
+              <h5 class="fw-bold text-dark mb-1">Web Development</h5>
+              <span class="mono-font text-muted fs-7">340+ Active Gigs</span>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 col-6">
+          <a href="jobs.html?category=Mobile+Apps" class="text-decoration-none">
+            <div class="gg-card gg-card-interactive text-center p-4">
+              <i class="fas fa-mobile-alt text-primary fs-1 mb-3"></i>
+              <h5 class="fw-bold text-dark mb-1">Mobile Apps</h5>
+              <span class="mono-font text-muted fs-7">180+ Active Gigs</span>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 col-6">
+          <a href="jobs.html?category=AI+%26+Data" class="text-decoration-none">
+            <div class="gg-card gg-card-interactive text-center p-4">
+              <i class="fas fa-brain text-primary fs-1 mb-3"></i>
+              <h5 class="fw-bold text-dark mb-1">AI & Data Science</h5>
+              <span class="mono-font text-muted fs-7">120+ Active Gigs</span>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 col-6">
+          <a href="jobs.html?category=Design+%26+Creative" class="text-decoration-none">
+            <div class="gg-card gg-card-interactive text-center p-4">
+              <i class="fas fa-paint-brush text-primary fs-1 mb-3"></i>
+              <h5 class="fw-bold text-dark mb-1">Design & Creative</h5>
+              <span class="mono-font text-muted fs-7">210+ Active Gigs</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dark Section CTA -->
+  <section class="py-5 dark-section position-relative">
+    <div class="container text-center py-4">
+      <h2 class="display-5 fw-bold mb-3">Ready to Accelerate Your Next Project?</h2>
+      <p class="lead text-muted mb-4 mx-auto" style="max-width: 600px;">
+        Join thousands of founders, engineers, and creatives building the future on Freelancer Marketplace.
+      </p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="signup.html?role=client" class="gg-btn-primary gg-btn-lg">Post a Job Now</a>
+        <a href="signup.html?role=freelancer" class="gg-btn-outline gg-btn-lg text-white border-white">Join as Freelancer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-top border-light py-5">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-4">
+          <a class="navbar-brand navbar-brand-logo mb-3 d-inline-block" href="index.html">
+            <i class="fas fa-bolt text-primary"></i> Freelancer Marketplace <span class="brand-badge">LIVE</span>
+          </a>
+          <p class="text-muted fs-7 mb-3" style="max-width: 320px;">
+            The modern freelancer marketplace built for developers, designers, and fast-moving technical teams.
+          </p>
+          <div class="mono-font fs-7 text-muted">
+            © 2026 Freelancer Marketplace Inc. All rights reserved.
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h6 class="fw-bold mb-3">For Clients</h6>
+          <ul class="list-unstyled fs-7">
+            <li class="mb-2"><a href="post-job.html" class="text-muted">Post a Job</a></li>
+            <li class="mb-2"><a href="jobs.html" class="text-muted">Browse Talent</a></li>
+            <li class="mb-2"><a href="signup.html?role=client" class="text-muted">Enterprise Solutions</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h6 class="fw-bold mb-3">For Freelancers</h6>
+          <ul class="list-unstyled fs-7">
+            <li class="mb-2"><a href="jobs.html" class="text-muted">Browse Open Jobs</a></li>
+            <li class="mb-2"><a href="signup.html?role=freelancer" class="text-muted">Create Profile</a></li>
+            <li class="mb-2"><a href="freelancer-dashboard.html" class="text-muted">Proposals</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4">
+          <h6 class="fw-bold mb-3">Stay Updated</h6>
+          <p class="text-muted fs-7 mb-2">Subscribe to get notified about high-budget gigs and top talent.</p>
+          <div class="input-group mb-2">
+            <input type="email" class="form-control" placeholder="Enter your email">
+            <button class="gg-btn-primary" type="button">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

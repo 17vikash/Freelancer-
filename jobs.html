@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Jobs — Freelancer Marketplace</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3.3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="main-navbar"></div>
+
+  <!-- Header Banner -->
+  <section class="bg-white border-bottom border-light py-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h1 class="fw-bold h2 mb-1">Explore Open Gigs</h1>
+          <p class="text-muted mb-0">Discover remote projects with live bidding and competitive budgets.</p>
+        </div>
+        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+          <span class="badge badge-primary px-3 py-2 fs-7"><span class="pulse-dot me-1"></span> <span id="job-count-badge">0 Gigs Available</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Search & Listing Layout -->
+  <main class="py-4">
+    <div class="container">
+      
+      <!-- Client Notice Banner (shown if logged in as Client) -->
+      <div id="client-notice-banner" class="d-none"></div>
+      
+      <!-- Top Search Bar -->
+      <div class="gg-card p-3 mb-4 shadow-sm">
+        <div class="row g-2 align-items-center">
+          <div class="col-lg-9 col-md-8">
+            <div class="input-group">
+              <span class="input-group-text bg-transparent border-end-0"><i class="fas fa-search text-muted"></i></span>
+              <input type="text" id="search-input" class="form-control border-start-0 ps-0" placeholder="Search by job title, skill tag, or keyword (e.g., React, AI, SwiftUI)...">
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 d-flex gap-2">
+            <button type="button" id="reset-filters-btn" class="gg-btn-secondary w-100"><i class="fas fa-undo me-1"></i> Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        
+        <!-- Filter Sidebar -->
+        <aside class="col-lg-3">
+          <div class="gg-card p-4 sticky-top" style="top: 85px; z-index: 10;">
+            <h5 class="fw-bold mb-3 d-flex align-items-center justify-content-between">
+              <span><i class="fas fa-sliders-h text-primary me-2"></i>Filters</span>
+              <button class="btn btn-link p-0 fs-8 text-muted d-lg-none" onclick="toggleSidebarFilters()">Close</button>
+            </h5>
+
+            <!-- Categories Checkboxes -->
+            <div class="mb-4">
+              <label class="form-label text-dark fw-bold mb-2">Category</label>
+              <div class="form-check mb-2">
+                <input class="form-check-input filter-category" type="radio" name="category" id="cat-all" value="" checked>
+                <label class="form-check-label fs-7" for="cat-all">All Categories</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input filter-category" type="radio" name="category" id="cat-web" value="Web Development">
+                <label class="form-check-label fs-7" for="cat-web">Web Development</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input filter-category" type="radio" name="category" id="cat-mobile" value="Mobile Apps">
+                <label class="form-check-label fs-7" for="cat-mobile">Mobile Apps</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input filter-category" type="radio" name="category" id="cat-ai" value="AI & Data">
+                <label class="form-check-label fs-7" for="cat-ai">AI & Data Science</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input filter-category" type="radio" name="category" id="cat-design" value="Design & Creative">
+                <label class="form-check-label fs-7" for="cat-design">Design & Creative</label>
+              </div>
+            </div>
+
+            <!-- Budget Range Slider -->
+            <div class="mb-4">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <label for="budget-slider" class="form-label text-dark fw-bold mb-0">Max Budget</label>
+                <span class="mono-font fw-bold text-primary fs-7" id="budget-value">₹100,000</span>
+              </div>
+              <input type="range" class="form-range" id="budget-slider" min="1000" max="100000" step="2500" value="100000">
+            </div>
+
+            <!-- Job Type Radio -->
+            <div class="mb-3">
+              <label class="form-label text-dark fw-bold mb-2">Budget Type</label>
+              <div class="form-check mb-2">
+                <input class="form-check-input filter-type" type="radio" name="jobType" id="type-all" value="" checked>
+                <label class="form-check-label fs-7" for="type-all">All Types</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input filter-type" type="radio" name="jobType" id="type-fixed" value="fixed">
+                <label class="form-check-label fs-7" for="type-fixed">Fixed Price</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input filter-type" type="radio" name="jobType" id="type-hourly" value="hourly">
+                <label class="form-check-label fs-7" for="type-hourly">Hourly Rate</label>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+
+        <!-- Right Side Job Card Grid -->
+        <section class="col-lg-9">
+          
+          <!-- Loading Skeleton State -->
+          <div id="jobs-skeleton" class="d-none">
+            <div class="row g-3">
+              <div class="col-12"><div class="skeleton skeleton-card" style="height: 180px;"></div></div>
+              <div class="col-12"><div class="skeleton skeleton-card" style="height: 180px;"></div></div>
+              <div class="col-12"><div class="skeleton skeleton-card" style="height: 180px;"></div></div>
+            </div>
+          </div>
+
+          <!-- Empty State Container -->
+          <div id="jobs-empty-state" class="empty-state d-none">
+            <div class="empty-state-icon"><i class="fas fa-search-minus text-muted"></i></div>
+            <h4 class="empty-state-title">No gigs match these filters</h4>
+            <p class="empty-state-text">
+              Try widening your budget range slider or clearing category filters to discover more open projects.
+            </p>
+            <button class="gg-btn-primary" onclick="resetAllFilters()"><i class="fas fa-undo me-1"></i> Clear Filters</button>
+          </div>
+
+          <!-- Active Jobs List Grid -->
+          <div id="jobs-container" class="row g-3"></div>
+
+          <!-- Load More Button -->
+          <div class="text-center mt-4">
+            <button id="load-more-btn" class="gg-btn-outline px-4 py-2 d-none">Load More Jobs</button>
+          </div>
+
+        </section>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/jobs.js"></script>
+</body>
+</html>

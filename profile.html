@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelancer Profile — Freelancer Marketplace</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3.3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="main-navbar"></div>
+
+  <!-- Loading State Skeleton -->
+  <div id="profile-skeleton" class="container py-5">
+    <div class="skeleton skeleton-card mb-4" style="height: 250px;"></div>
+    <div class="skeleton skeleton-card" style="height: 300px;"></div>
+  </div>
+
+  <!-- Main Profile Content -->
+  <main id="profile-content" class="py-5 d-none">
+    <div class="container">
+      
+      <!-- Top Profile Card -->
+      <div class="gg-card p-4 mb-4">
+        <div class="row align-items-center g-4">
+          <div class="col-auto">
+            <div id="profile-avatar" class="avatar-circle bg-primary-tint text-primary display-6 fw-bold" style="width: 90px; height: 90px;">
+              AR
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+              <h1 id="profile-name" class="fw-bold h2 mb-0">Alex Rivera</h1>
+              <span class="badge badge-open"><span class="pulse-dot me-1"></span> Available for Hire</span>
+            </div>
+            
+            <h5 id="profile-title" class="text-primary fw-semibold mb-2">Senior Full-Stack Developer & UI/UX Architect</h5>
+
+            <div class="d-flex flex-wrap align-items-center gap-3 text-muted fs-7 mb-3">
+              <span><i class="fas fa-star text-warning me-1"></i><strong id="profile-rating" class="text-dark">4.95</strong> (<span id="profile-review-count">42</span> reviews)</span>
+              <span>•</span>
+              <span><i class="fas fa-map-marker-alt text-danger me-1"></i> Bengaluru, India</span>
+              <span>•</span>
+              <span><i class="fas fa-clock text-primary me-1"></i> Full Time (40 hrs/wk)</span>
+            </div>
+
+            <div id="profile-skills" class="d-flex flex-wrap gap-1">
+              <!-- Skill tags rendered by JS -->
+            </div>
+          </div>
+
+          <div class="col-lg-auto text-lg-end border-start-lg ps-lg-4">
+            <div class="mb-3">
+              <span class="text-muted fs-8 d-block text-uppercase fw-semibold">Hourly Rate</span>
+              <span id="profile-rate" class="job-budget fs-2 fw-bold text-primary">₹1,500/hr</span>
+            </div>
+            <a href="signup.html?role=client" class="gg-btn-primary w-100">
+              Hire Alex Rivera <i class="fas fa-paper-plane ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bio Section -->
+      <div class="gg-card p-4 mb-4">
+        <h4 class="fw-bold mb-3"><i class="fas fa-user text-primary me-2"></i>About</h4>
+        <p id="profile-bio" class="text-muted mb-0" style="white-space: pre-line;">
+          Bio details loading...
+        </p>
+      </div>
+
+      <!-- Portfolio Grid Section -->
+      <section class="gg-card p-4 mb-4">
+        <h4 class="fw-bold mb-3"><i class="fas fa-layer-group text-primary me-2"></i>Featured Portfolio Projects</h4>
+        
+        <div id="portfolio-container" class="row g-4">
+          <!-- Rendered by JS -->
+        </div>
+
+        <!-- Portfolio Empty State -->
+        <div id="portfolio-empty" class="empty-state d-none py-3">
+          <p class="text-muted mb-0">No portfolio items added yet.</p>
+        </div>
+      </section>
+
+      <!-- Client Reviews Section -->
+      <section class="gg-card p-4">
+        <h4 class="fw-bold mb-4"><i class="fas fa-comments text-primary me-2"></i>Client Reviews & Testimonials</h4>
+        
+        <div id="reviews-container" class="d-flex flex-column gap-3">
+          <!-- Rendered by JS -->
+        </div>
+
+        <!-- Reviews Empty State -->
+        <div id="reviews-empty" class="empty-state d-none py-3">
+          <p class="text-muted mb-0">No client reviews recorded yet.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>

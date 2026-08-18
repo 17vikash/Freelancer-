@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Details — Freelancer Marketplace</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3.3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="main-navbar"></div>
+
+  <!-- Loading State -->
+  <div id="job-detail-skeleton" class="container py-5">
+    <div class="row g-4">
+      <div class="col-lg-8"><div class="skeleton skeleton-card" style="height: 350px;"></div></div>
+      <div class="col-lg-4"><div class="skeleton skeleton-card" style="height: 350px;"></div></div>
+    </div>
+  </div>
+
+  <!-- Main Details Section -->
+  <main id="job-detail-content" class="py-5 d-none">
+    <div class="container">
+      
+      <!-- Back Link -->
+      <a href="jobs.html" class="text-muted fs-7 text-decoration-none d-inline-block mb-3">
+        <i class="fas fa-arrow-left me-1"></i> Back to Open Gigs
+      </a>
+
+      <div class="row g-4">
+        
+        <!-- Left Side: Job Spec & Description -->
+        <div class="col-lg-8">
+          <div class="gg-card p-4 mb-4">
+            
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <span id="job-category" class="badge badge-primary">Category</span>
+              <span id="job-status" class="badge badge-open"><span class="pulse-dot me-1"></span> Open</span>
+              <span class="text-muted fs-8 ms-auto" id="job-posted-date">Posted 2 days ago</span>
+            </div>
+
+            <h1 id="job-title" class="fw-bold h2 mb-3">Job Title Header</h1>
+
+            <div class="d-flex flex-wrap align-items-center gap-4 py-3 my-3 border-top border-bottom border-light">
+              <div>
+                <span class="text-muted fs-8 d-block text-uppercase fw-semibold">Budget</span>
+                <span id="job-budget" class="job-budget fs-3 fw-bold text-primary">₹0</span>
+              </div>
+              <div class="vr bg-light"></div>
+              <div>
+                <span class="text-muted fs-8 d-block text-uppercase fw-semibold">Type</span>
+                <span id="job-budget-type" class="fw-bold fs-6">Fixed Price</span>
+              </div>
+              <div class="vr bg-light"></div>
+              <div>
+                <span class="text-muted fs-8 d-block text-uppercase fw-semibold">Target Deadline</span>
+                <span id="job-deadline" class="mono-font fw-bold fs-6">2026-08-30</span>
+              </div>
+            </div>
+
+            <h5 class="fw-bold mb-2">Project Overview</h5>
+            <p id="job-description" class="text-muted mb-4" style="white-space: pre-line;">
+              Full job description will load here...
+            </p>
+
+            <h5 class="fw-bold mb-2">Required Skills & Expertise</h5>
+            <div id="job-skills" class="d-flex flex-wrap gap-2 mb-4">
+              <!-- Skill tags populated by JS -->
+            </div>
+
+            <!-- About Client -->
+            <div class="p-3 rounded bg-light border border-light">
+              <h6 class="fw-bold mb-2"><i class="fas fa-building text-primary me-2"></i>About the Client</h6>
+              <div class="d-flex align-items-center gap-3">
+                <div class="avatar-circle bg-white border"><i class="fas fa-user-tie text-muted"></i></div>
+                <div>
+                  <div id="client-name" class="fw-bold">Client Name</div>
+                  <div class="fs-8 text-muted">
+                    <span class="text-warning"><i class="fas fa-star"></i> <span id="client-rating">4.9</span></span> • 100% Payment Verified
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Owner Client View: List of Proposals -->
+          <div id="client-proposals-section" class="gg-card p-4 d-none">
+            <h4 class="fw-bold mb-3 d-flex align-items-center justify-content-between">
+              <span><i class="fas fa-list-alt text-primary me-2"></i>Submitted Proposals</span>
+              <span id="proposals-count-badge" class="badge badge-primary">0 Bids</span>
+            </h4>
+            <div id="proposals-list-container">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Proposal Submission Card (Freelancer only) -->
+        <div class="col-lg-4">
+          
+          <!-- Submit Proposal Card -->
+          <div id="submit-proposal-card" class="gg-card p-4 sticky-top" style="top: 85px;">
+            <h4 class="fw-bold mb-3"><i class="fas fa-paper-plane text-primary me-2"></i>Submit Proposal</h4>
+            <p class="text-muted fs-7 mb-4">Pitch your approach and offer your competitive rate to win this gig.</p>
+
+            <form id="proposal-form" novalidate>
+              <div class="mb-3">
+                <label for="bidAmount" class="form-label">Your Bid Amount (₹)</label>
+                <div class="input-group">
+                  <span class="input-group-text mono-font">₹</span>
+                  <input type="number" id="bidAmount" class="form-control mono-font" placeholder="60000" required>
+                </div>
+                <div class="invalid-feedback fs-8">Bid amount is required.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="estimatedDuration" class="form-label">Estimated Delivery</label>
+                <select id="estimatedDuration" class="form-select">
+                  <option value="Less than 1 week">Less than 1 week</option>
+                  <option value="1 to 2 weeks" selected>1 to 2 weeks</option>
+                  <option value="2 to 4 weeks">2 to 4 weeks</option>
+                  <option value="More than 1 month">More than 1 month</option>
+                </select>
+              </div>
+
+              <div class="mb-4">
+                <label for="coverLetter" class="form-label">Cover Letter & Pitch</label>
+                <textarea id="coverLetter" class="form-control" rows="5" placeholder="Explain why you are the best fit for this project. Highlight relevant past experience..." required minlength="20"></textarea>
+                <div class="invalid-feedback fs-8">Please write a pitch of at least 20 characters.</div>
+              </div>
+
+              <button type="submit" id="submit-proposal-btn" class="gg-btn-primary w-100 py-2">
+                <span>Submit Proposal</span> <i class="fas fa-arrow-right ms-1"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Non-Freelancer Notice (Client or Logged out) -->
+          <div id="proposal-guest-notice" class="gg-card p-4 text-center d-none">
+            <i class="fas fa-lock text-muted fs-1 mb-3"></i>
+            <h5 class="fw-bold mb-2">Proposal Submission</h5>
+            <p class="text-muted fs-7 mb-3">You must be logged in as a <strong>Freelancer</strong> to submit bids on open gigs.</p>
+            <a href="signup.html?role=freelancer" class="gg-btn-primary w-100">Join as Freelancer</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/job-detail.js"></script>
+</body>
+</html>
